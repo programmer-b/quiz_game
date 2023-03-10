@@ -3,12 +3,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_game/presentation/components/game_background.dart';
+import 'package:quiz_game/presentation/views/choose_level/choose_level_provider.dart';
 import 'package:quiz_game/presentation/views/main_menu/main_menu_provider.dart';
 import 'package:quiz_game/presentation/views/main_menu/main_menu_view.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initialize();
+
+  setOrientationPortrait();
+
   runApp(const MyApp());
 }
 
@@ -19,7 +23,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => MainMenuProvider())
+        ChangeNotifierProvider(create: (context) => MainMenuProvider()),
+        ChangeNotifierProvider(create: (context) => ChooseLevelProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -28,7 +33,7 @@ class MyApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.transparent,
             primarySwatch: Colors.blue,
             textTheme: GoogleFonts.permanentMarkerTextTheme()),
-        home: const SafeArea(child: GameBackground(child: MainMenuPage())),
+        home: const MainMenuPage(),
       ),
     );
   }

@@ -1,5 +1,7 @@
-const appNameText = "Abel-Zee Quiz Game!";
-const mainMenuMusic = "assets/music/main_menu_music.mp3";
-const startGameText = "Start";
-const settingsText = "Settings";
-const categoriesText = "Categories";
+const mainMenuMusicAsset = "assets/music/main_menu_music.mp3";
+
+const appNameTxt = "Abel-Zee Quiz Game!";
+const startGameTxt = "Start";
+const settingsTxt = "Settings";
+const categoriesTxt = "Categories";
+const chooseGameLevelTxt = "Choose level to start";
