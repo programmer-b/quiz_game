@@ -61,12 +61,6 @@ class _MainMenuPageState extends State<MainMenuPage> {
                   ),
                   14.height,
                   GameButtonContainer(
-                    child: Text(categoriesTxt,
-                        style: boldTextStyle(color: white, size: 29),
-                        textAlign: TextAlign.center),
-                  ),
-                  14.height,
-                  GameButtonContainer(
                     child: Text(settingsTxt,
                         style: boldTextStyle(color: white, size: 29),
                         textAlign: TextAlign.center),

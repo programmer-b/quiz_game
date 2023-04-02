@@ -5,6 +5,10 @@ import 'package:quiz_game/utils/dimens.dart';
 import 'package:quiz_game/utils/global_strings.dart';
 
 import '../../../utils/colors.dart';
+import '../../components/icon_widget.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../play_session/play_session_view.dart';
 
 class ChooseLevelPage extends StatefulWidget {
   const ChooseLevelPage({Key? key}) : super(key: key);
@@ -23,21 +27,31 @@ class _ChooseLevelPageState extends State<ChooseLevelPage> {
             padding: const EdgeInsets.all(listViewPadding),
             child: ListView(
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    IconWidget(icon: FontAwesomeIcons.houseChimney),
+                    IconWidget(icon: FontAwesomeIcons.gear)
+                  ],
+                ),
                 Container(
                   alignment: Alignment.center,
                   child: Text(
                     chooseGameLevelTxt,
-                    style: boldTextStyle(size: titleTxtSize, color: primaryColor),
+                    style:
+                        boldTextStyle(size: titleTxtSize, color: primaryColor),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 10.height,
                 Container(
                   alignment: Alignment.center,
-                  child: Wrap(children: [
-                    for(int i = 0; i < 25; i ++)
-                      _levelTab(context, level: i, enabled: i < 3)
-                      ],),
+                  child: Wrap(
+                    children: [
+                      for (int i = 0; i < 25; i++)
+                        _levelTab(context, level: i, enabled: i < 3)
+                    ],
+                  ),
                 )
               ],
             ),
@@ -49,11 +63,12 @@ class _ChooseLevelPageState extends State<ChooseLevelPage> {
 }
 
 Widget _levelTab(context,
-    {required int level, void Function()? onTap, required bool enabled}) =>
+        {required int level, required bool enabled}) =>
     Builder(builder: (ctx) {
       final width = ctx.width() * 0.20;
+      onTap() => enabled ? const PlaySessionPage().launch(context, pageRouteAnimation: PageRouteAnimation.Slide) : toast('Level disabled');
       return InkWell(
-        onTap: onTap,
+        onTap: () => onTap(),
         child: Card(
           elevation: 10,
           color: Colors.transparent,
@@ -77,7 +92,10 @@ Widget _levelTab(context,
                   '$level',
                   style: boldTextStyle(size: titleTxtSize, color: primaryColor),
                 ),
-                Icon(Icons.lock, color: enabled ? Colors.transparent : Colors.black26,)
+                Icon(
+                  Icons.lock,
+                  color: enabled ? Colors.transparent : Colors.black26,
+                )
               ],
             ),
           ),
